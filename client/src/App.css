@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+.message {
+  font-size: 15px;
+  color: #333;
+}
+
+.message.my-message {
+  color: green;
+}
