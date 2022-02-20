@@ -22,10 +22,10 @@ function App() {
       {!showChat ?
        (
         <div>
-            <h3>Join A Chat</h3>
+            <h3>채팅방 입장</h3>
             <input 
               type="text" 
-              placeholder='john...' 
+              placeholder='닉네임을 입력해주세요.' 
               onChange={(e) => 
                 {setUsername(e.target.value)
               }} 
@@ -33,12 +33,12 @@ function App() {
             
             <input 
               type="text" 
-              placeholder='Room ID...' 
+              placeholder='방 이름을 이렵해주세요.' 
               onChange={(e) => 
                 {setRoom(e.target.value)
               }} 
             />
-            <button onClick={joinRoom}>Join A Room</button>
+            <button onClick={joinRoom}>채팅방 입장하기</button>
           </div>
         )
         :

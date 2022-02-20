@@ -4,7 +4,9 @@ function Chat({ socket, username, room }) {
   const [currentMeesage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
-  const sendMessage = async () => {
+  const sendMessage = async (e) => {
+    e.preventDefault();
+
     if (currentMeesage !== "") {
       const messageData = {
         room: room,
@@ -15,7 +17,7 @@ function Chat({ socket, username, room }) {
 
       await socket.emit("send_message", messageData);
       setMessageList((list) => [...list, messageData]);
-      setCurrentMessage("")
+      setCurrentMessage("");
     }
   };
 
@@ -29,7 +31,7 @@ function Chat({ socket, username, room }) {
     <div>
       <div>
         <div className='chat-header'>
-          <p>Live Chat</p>
+          <p>{room} 방</p>
         </div>
         <div className='chat-body'>
           {messageList.map((messageContent, index) => {
@@ -37,13 +39,15 @@ function Chat({ socket, username, room }) {
           })}
         </div>
         <div className='chat-footer'>
-          <input 
-            type="text" 
-            placeholder='메세지를 작성해주세요.'
-            value={currentMeesage}
-            onChange={e=> setCurrentMessage(e.target.value)} 
-          />
-          <button onClick={sendMessage}>메세지 보내기</button>
+          <form onSubmit={sendMessage}>
+            <input 
+              type="text" 
+              placeholder='메세지를 작성해주세요.'
+              value={currentMeesage}
+              onChange={e=> setCurrentMessage(e.target.value)} 
+            />
+            <button>메세지 보내기</button>
+          </form>
         </div>
       </div>
     </div>
